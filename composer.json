@@ -1,5 +1,5 @@
 {
-    "name": "alaa/task-manager",
+    "name": "alaa/taskmanager",
     "description": "Team-based Task Management system for Laravel with roles, notifications, localization, and config publishing.",
     "type": "library",
     "license": "MIT",
