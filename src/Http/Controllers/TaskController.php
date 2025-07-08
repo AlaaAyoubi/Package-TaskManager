@@ -10,7 +10,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Alaa\TaskManager\Models\Notification;
 
 class TaskController extends Controller

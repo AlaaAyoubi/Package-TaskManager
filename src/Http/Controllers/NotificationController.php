@@ -2,7 +2,7 @@
 
 namespace Alaa\TaskManager\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Alaa\TaskManager\Models\Notification;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
