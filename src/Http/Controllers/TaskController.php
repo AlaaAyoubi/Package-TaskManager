@@ -3,15 +3,15 @@
 namespace Alaa\TaskManager\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Alaa\TaskManager\Models\Task;
 use Alaa\TaskManager\Models\Team;
-use App\Models\User;
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Services\NotificationService;
+use Alaa\TaskManager\Models\Notification;
+use Alaa\TaskManager\Http\Requests\StoreTaskRequest;
+use Alaa\TaskManager\Http\Requests\UpdateTaskRequest;
+use Alaa\TaskManager\Services\NotificationService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Routing\Controller;
-use Alaa\TaskManager\Models\Notification;
 
 class TaskController extends Controller
 {

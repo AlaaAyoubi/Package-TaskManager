@@ -3,12 +3,12 @@
 namespace Alaa\TaskManager\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Alaa\TaskManager\Models\Notification;
-use App\Services\NotificationService;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Alaa\TaskManager\Models\Notification;
 use Alaa\TaskManager\Models\Task;
 use Alaa\TaskManager\Models\Team;
+use Alaa\TaskManager\Services\NotificationService;
+use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {

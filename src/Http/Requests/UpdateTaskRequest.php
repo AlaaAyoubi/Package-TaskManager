@@ -3,7 +3,7 @@
 namespace Alaa\TaskManager\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Team;
+use Alaa\TaskManager\Models\Team;
 use Illuminate\Validation\Rule;
 
 class UpdateTaskRequest extends FormRequest

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Alaa\TaskManager\Http\Controllers\TaskController;
 use Alaa\TaskManager\Http\Controllers\NotificationController;
+use Alaa\TaskManager\Http\Controllers\TeamController;
+use Alaa\TaskManager\Http\Controllers\ManagerTeamController;
 
 // =============================
 // مسارات إدارة المهام (Tasks)
@@ -51,4 +53,36 @@ Route::middleware('auth')->group(function () {
     // مسارات AJAX
     Route::get('notifications/unread-count', [NotificationController::class, 'unreadCount'])->name('notifications.unreadCount');
     Route::get('notifications/latest', [NotificationController::class, 'latest'])->name('notifications.latest');
+});
+
+// =============================
+// مسارات إدارة الفرق (Teams) للأدمن
+// =============================
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('teams', TeamController::class);
+});
+
+// =============================
+// مسارات فرق المدير (Manager Teams)
+// =============================
+Route::middleware(['auth', 'team.role:manager'])->group(function () {
+    Route::get('manager/teams', [ManagerTeamController::class, 'index'])->name('manager.teams');
+    Route::get('manager/teams/{team}', [ManagerTeamController::class, 'show'])->name('manager.teams.show');
+    Route::get('manager/teams/{team}/edit', [ManagerTeamController::class, 'edit'])->name('manager.teams.edit');
+    Route::put('manager/teams/{team}', [ManagerTeamController::class, 'update'])->name('manager.teams.update');
+    Route::delete('manager/teams/{team}', [ManagerTeamController::class, 'destroy'])->name('manager.teams.destroy');
+    // إدارة مهام الفرق
+    Route::get('manager/teams/{team}/tasks', [ManagerTeamController::class, 'teamTasks'])->name('manager.teams.tasks');
+    Route::get('manager/teams/{team}/tasks/create', [ManagerTeamController::class, 'createTask'])->name('manager.teams.tasks.create');
+    Route::post('manager/teams/{team}/tasks', [ManagerTeamController::class, 'storeTask'])->name('manager.teams.tasks.store');
+    Route::get('manager/teams/{team}/tasks/{task}/edit', [ManagerTeamController::class, 'editTask'])->name('manager.teams.tasks.edit');
+    Route::put('manager/teams/{team}/tasks/{task}', [ManagerTeamController::class, 'updateTask'])->name('manager.teams.tasks.update');
+    Route::delete('manager/teams/{team}/tasks/{task}', [ManagerTeamController::class, 'destroyTask'])->name('manager.teams.tasks.destroy');
+});
+
+// =============================
+// مسار جلب أعضاء فريق معين (AJAX)
+// =============================
+Route::middleware('auth')->group(function () {
+    Route::get('teams/{team}/members', [TeamController::class, 'getMembers'])->name('teams.members');
 });
